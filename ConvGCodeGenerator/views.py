@@ -12,12 +12,12 @@ def index(request):
                   ("EDM", 'disabled'),
                   ("Water Jet ", 'disabled'),
                   ("etc...", 'disabled')]
-    operations = [("Tool Test", 'enabled'),
-                  ("OD Turning", 'disabled'),
-                  ("ID Boring", 'disabled'),
+    operations = [("Tool-Test", 'enabled'),
+                  ("OD-Turning", 'disabled'),
+                  ("ID-Boring", 'disabled'),
                   ("Drilling ", 'disabled'),
-                  ("OD Threading", 'disabled'),
-                  ("ID Threading", 'disabled'),
+                  ("OD-Threading", 'disabled'),
+                  ("ID-Threading", 'disabled'),
                   ("etc...", 'disabled')]
     post_processors = [("Fanuc0tb", 'enabled'),
                   ("LinuxCNC", 'disabled'),
@@ -81,8 +81,8 @@ def index(request):
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">CG2</a></li>
-        <li><a href="#">About</a></li>
-''' + "\n".join([str('<li><a href="#">' + str(x) + '</a></li>') for x in link_list]) + '''
+        <li><a href="#">About</a></li><!---
+''' + "\n".join([str('<li><a href="#">' + str(x) + '</a></li>') for x in link_list]) + '''-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -114,9 +114,9 @@ def index(request):
 ''' + "\n".join([str('<option ' + str(x[1]) + '>' + str(x[0]) + '</option>') for x in machines]) + '''
           </select>
           <label for="sel1">Select Operation:</label>
-          <select class="form-control" id="sel1">
+          <!--<select class="form-control" id="sel1">
 ''' + "\n".join([str('<option ' + str(x[1]) + '>' + str(x[0]) + '</option>') for x in operations]) + '''
-          </select>
+          </select>-->
           <label for="sel1">Select Post Processor:</label>
           <select class="form-control" id="sel1">
 ''' + "\n".join([str('<option ' + str(x[1]) + '>' + str(x[0]) + '</option>') for x in post_processors]) + '''
@@ -130,6 +130,45 @@ def index(request):
       <div class="text-center">
         <div class="badge">Step 2</div><br/>
       </div>
+      
+      <ul class="nav nav-tabs">
+        <!--<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+        <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+        <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>-->
+''' + "\n".join([str('<li><a data-toggle="tab" href="#' + str(x[0]) + '" ' + str(x[1]) + '>' + str(x[0]) + '</a></li>') for x in operations]) + '''        
+      </ul>
+        
+      <div class="tab-content">
+        <div id="Tool-Test" class="tab-pane fade in active">
+          <h3>TOOL TEST</h3>
+          <p>Some content.</p>
+        </div>
+        <div id="OD-Turning" class="tab-pane fade">
+          <h3>OD TURNING</h3>
+          <p>Some content.</p>
+        </div>
+        <div id="ID-Boring" class="tab-pane fade">
+          <h3>ID BORING</h3>
+          <p>Some content in menu 2.</p>
+        </div>
+        <div id="Drilling" class="tab-pane fade">
+          <h3>DRILLING</h3>
+          <p>Some content in menu 2.</p>
+        </div>
+        <div id="OD-Threading" class="tab-pane fade">
+          <h3>OD THREADING</h3>
+          <p>Some content in menu 2.</p>
+        </div> 
+        <div id="ID-Threading" class="tab-pane fade">
+          <h3>ID THREADING</h3>
+          <p>Some content in menu 2.</p>
+        </div>
+        <div id="etc..." class="tab-pane fade">
+          <h3>ETC...</h3>
+          <p>Some content in menu 2.</p>
+        </div>
+      </div>
+      
       <h1>Parameter input / diagrams</h1>
       This section will have parameter inputs and diagrams identifying parameter locations for different combinations selected in step 1.
       <hr>
